@@ -18,3 +18,4 @@ const greet = (s) => {
 export default {
     greet
 };
+
