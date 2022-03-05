@@ -24,13 +24,13 @@ const compress = (s) => {
     let i = 0;
     let j = 0;
     
-    while(j <= s.length){
+    while(j <= s.length){ // last ele at last index will be undefined and it won't be equal to i and will get the count, if we dn't make it equal to s.length it won't give last ele count and ele
       if(s[i] === s[j]){
         j += 1;
       }else{
         count = j - i
         if (count >= 2) result.push(count);
-        result.push(s[i])
+        result.push(s[i])   // if we use an str to store the result and push it here it will run in linear time and time complexity will become O(n2) because that's inside the while loop. 
         i = j;
       }
       
