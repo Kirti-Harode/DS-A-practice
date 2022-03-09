@@ -20,3 +20,35 @@
 // test_08:
 // anagrams('abbc', 'aabc'); // -> false
 
+const anagrams = (s1, s2) => {
+    // iterate over the s1 and add char and count as key value pair in the obj
+    // iterate over the s2 and remove char count from the obj
+    // see if all values are 0 in obj, return true if 0 otherwise return false
+    let obj = []
+    for (let char of s1){
+      if (!(char in obj)){
+        obj[char] = 0;
+      }
+      obj[char] += 1;
+      
+    }
+  
+    for (let char of s2){
+      if ((obj[char] === undefined)){
+        return false;
+      }
+       obj[char] -= 1;
+      
+    }
+   
+    // in loop iterating through keys of thge obj
+    for(let char in obj){
+      if(obj[char] !== 0 ){
+        return false;
+      }
+    }
+    return true;
+  };
+  
+//   time complexity O(n+m+n) O(n) => linear
+//   space complexity O(n) => only on object in memory
