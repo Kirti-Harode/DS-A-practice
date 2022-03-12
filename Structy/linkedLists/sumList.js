@@ -43,12 +43,12 @@ const sumList = (head) => {
     //   return count
       
     let current = head;
-    let count = 0;
+    let sum = 0;
     while(current !== null){
-    count += current.val;
+    sum += current.val;
     current = current.next;
     };
-    return count;
+    return sum;
       
       
 };
@@ -65,4 +65,4 @@ const sumList = (head) => {
 };
 
 // time O(n)
-// space O(n)
+// space O(n) bcs we add n num of calls to stack beofre hitting the base case
