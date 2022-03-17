@@ -56,3 +56,31 @@ var matrixReshape = function(mat, r, c) {
     }
     return matrix;
 };
+
+//does not work yet
+//     let row = matrix.length;
+//     let col = matrix[0].length;
+    
+//     let flattned = matrix.flat();
+    
+//     let result = [];
+//     for(let i = 0; i < col; i++){
+//         result.push(Array(row).fill(0));
+//     }
+    
+//     let r = 0; 
+//     let c = 0; 
+//     let resultRow = matrix[0].length;
+//     let resultCol = matrix.length;
+    
+//     for(let k = 0; k <= (row*col); k++){
+//         result[c][r] = matrix[r][c];
+//         if(c === resultCol -1){
+//             r ++;
+//             c = 0;
+//         }else{
+//             c++;
+//         }
+//     }
+    
+//     return result;
