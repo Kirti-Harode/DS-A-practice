@@ -19,8 +19,7 @@
 
 
 var transpose = function(matrix) {
-    let result = [];
-    
+    let result = [];  
     for(let i = 0; i < matrix[0].length; i++){
         let sub = [];
         for(let j = 0; j < matrix.length; j++){
@@ -29,4 +28,29 @@ var transpose = function(matrix) {
         result.push(sub)
     }
     return result;
+};
+
+
+var transpose = function(matrix) {
+    let newMatrix = []
+    let newMatrixRow = matrix[0].length
+    let newMatrixCol = matrix.length
+    for (i = 0; i < matrix[0].length; i++) {
+        newMatrix.push(Array(newMatrixCol).fill(null))
+    }
+    let row = 0 
+    let col = 0 
+    let count = 0
+    while (count < newMatrixRow*newMatrixCol) {
+        count += 1
+        let val = matrix[row][col]
+        newMatrix[col][row] = val 
+        if (col === matrix[0].length -1) {
+            row += 1
+            col = 0
+        } else {
+            col += 1
+        }
+    }
+    return newMatrix
 };
