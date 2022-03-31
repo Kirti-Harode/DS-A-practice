@@ -63,3 +63,50 @@
 
 
 
+const getNodeValue = (head, index) => {
+
+// BRUTE FORCE:
+    // create an empty arr
+    // set var CURRENT TO HEAD
+    // loop while current is not null
+    // add val to the arr and set current to next node
+    // iterate in the arr and return val at given index
+    //   time complexity: O(n)
+    //   Space O(n)
+    // n = number of nodes
+    let values = [];
+    let current = head;
+    while(current !== null){
+        values.push(current.val);
+        current = current.next;
+        
+    }
+    if(values[index] !== undefined){
+        return values[index]
+    }else{
+        return null;
+    }
+
+// Iterative:
+    // time: O(n)
+    // space: O(1)
+    let count = 0;
+    let current = head;
+    while(current !== null){
+      if(count === index){
+        return current.val;
+      }
+      current = current.next;
+      count ++;
+    }
+    return null;
+
+// Recursively: 
+    //   n = number of nodes
+    // Time: O(n)
+    // Space: O(n)
+    if(head === null) return null;
+    if(index === 0) return head.val;
+    return getNodeValue(head.next, index-1);
+
+};
