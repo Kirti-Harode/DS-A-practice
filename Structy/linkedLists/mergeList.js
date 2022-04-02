@@ -67,3 +67,58 @@
 // mergeLists(h, p);
 // // 15 -> 30 -> 67
 
+const mergeLists = (head1, head2) => {
+    // check head1's val and head2's val which is smaller and save 
+    // it to a var and return that at the end
+    // while both are not null
+    // check next nodes and find min
+    // add them next
+    // if any not null then set next heads
+      
+    // n = length of list 1
+    // m = length of list 2
+    // Time: O(min(n, m))
+    // Space: O(1)
+      
+      let current1 = head1;
+      let current2 = head2;
+      let dummy = new Node(null);
+      let tail = dummy;
+      while(current1 !== null & current2 !== null){
+        if(current1.val < current2.val){
+          tail.next = current1;
+          current1 = current1.next
+        }else{
+          tail.next = current2;
+          current2 = current2.next
+        }
+        tail = tail.next;
+        if(current1 === null) tail.next = current2;
+        if(current2 === null) tail.next = current1;
+      }
+      return dummy.next;
+};
+
+// recursively:
+
+const mergeLists = (head1, head2) => {
+  
+    //   n = length of list 1
+    // m = length of list 2
+    // Time: O(min(n, m))
+    // Space: O(min(n, m))
+      if(head1 === null && head2 === null) return null;
+      if(head1 === null) return head2;
+      if(head2 === null) return head1;
+      
+      if(head1.val < head2.val){
+        let next1 = head1.next;
+        head1.next = mergeLists(next1, head2)
+        return head1;
+      }else{
+        let next2 = head2.next;
+        head2.next = mergeLists(head1, next2)
+        return head2;
+      }
+    };
+    
