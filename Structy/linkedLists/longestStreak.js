@@ -102,4 +102,6 @@ const longestStreak = (head) => {
       }
       return longestCount;
     };
+
     
+    // no recursion
