@@ -8,3 +8,4 @@ def doubler(array)
     end
     result
   end
+  puts doubler([1,2,3])
