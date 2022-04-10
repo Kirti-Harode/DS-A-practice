@@ -14,10 +14,83 @@
 
 // Example 2:
 
-// Input: cpdomains = ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org", '10 google.wiki.org']
+// Input: cpdomains = ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]
 // Output: ["901 mail.com","50 yahoo.com","900 google.mail.com","5 wiki.org","5 org","1 intel.mail.com","951 com"]
 // Explanation: We will visit "google.mail.com" 900 times, "yahoo.com" 50 times, "intel.mail.com" once and "wiki.org" 5 times.
 // For the subdomains, we will visit "mail.com" 900 + 1 = 901 times, "com" 900 + 50 + 1 = 951 times, and "org" 5 times.
+
+
+
+// pseudoCode:
+
+// create an empty hash
+// iterate over the input
+// for each ele split by space
+// add first ele as a val and the second ele (domain) as a key into the hash
+// check if exists in hash if it does than add that num to already exist domain
+// iterate over domain 
+// count all the dots first in a sepearte loop
+// iterate over the domain and untill dots is zero split and add key val to hash
+// return hash or return formatted output
+
+// time: 
+// n input length
+// m is input[i] length
+// l is domain length
+// O(n * m * l)
+
+// space: O(n) for hash 
+function countDomains(input){
+  let allDomains = {};
+
+  for(let i = 0; i < input.length; i++){
+    let arr = input[i].split(" ");
+    let num = Number(arr[0]);
+    let domain = arr[1];
+
+    if(allDomains[domain]){
+      allDomains[domain] += num;
+    }else{
+      allDomains[domain] = num;
+    }
+
+    let subdomains = domain.split(".");
+    for(let k = 1;  k < subdomains.length; k++){
+      let sub = subdomains[k];
+      for(let l = k+1; l < subdomains.length; l++){
+        sub += ('.' + subdomains[l]);
+      }
+      if(allDomains[sub]){
+        allDomains[sub] += num;
+      }else{
+        allDomains[sub] = num;
+      }
+     
+    }
+
+  }
+
+  let result = [];
+  let keys = Object.keys(allDomains);
+  
+  for(let a = 0; a < keys.length; a++){
+      let subs = '';
+      subs += (allDomains[keys[a]] + " ");
+      subs += keys[a];
+      result.push(subs)
+  }
+  return result;
+}
+
+// cpdomains = ["9001 discuss.leetcode.com"];
+cpdomains = ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"];
+console.log(countDomains(cpdomains));
+
+
+
+
+
+// old solution not completed
 
 // iterating over th input
 // split each ele by space, store one as a num and sencd as a domain
