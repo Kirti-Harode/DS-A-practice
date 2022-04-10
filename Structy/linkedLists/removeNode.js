@@ -71,3 +71,39 @@
 // removeNode(t, "t");
 // // null
 
+
+const removeNode = (head, targetVal) => {
+//   set current
+//   if head is target val then just return head.next
+//   set prev to head
+//   currrent to head.next
+//   while current is not null
+//   if any val is target then point prev to current.next 
+//   set prev to current
+//   set current to current.next
+  
+//   time: O(n)
+//   space: O(1)
+    if(head.val === targetVal) return head.next;
+    let current = head.next;
+    let prev = head;
+    while(current !== null){
+        if(current.val === targetVal){
+        prev.next = current.next;
+        break;
+        }
+        prev = current;
+        current = current.next;
+    }
+    return head;
+};
+
+
+const removeNode = (head, targetVal) => {
+  
+    // recursively: time & space : O(n)
+    if(head === null) return null;
+    if(head.val === targetVal) return head.next;
+    head.next = removeNode(head.next, targetVal);
+    return head;
+}
