@@ -84,7 +84,7 @@
 // maxPathSum(a); // -> 42
 
 
-// iteratively: doesn't work correctly only passes 2 test cases
+// iteratively: doesn't work correctly only passes 2 test cases becasue it doesn't go to left and then right path
 const maxPathSum = (root) => { 
     //   create a stack to store left nodes
     //   create a stck to store right nodes
