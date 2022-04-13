@@ -76,8 +76,8 @@
 // Time: O(n)
 // Space: O(n)
 const howHigh = (node) => {
-    //   return 0 if node is null
-    //   return max of left or right
+    // return 0 if node is null
+    // return max of left or right
       
     if(node === null) return -1;
     // if(node !== null) return 1;
