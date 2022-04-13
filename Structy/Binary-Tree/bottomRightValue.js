@@ -113,3 +113,28 @@
 
 // bottomRightValue(a); // -> 42
 
+const bottomRightValue = (root) => {
+    //   queue to track nodes 
+    //   while queue is not empty
+    //   store current 
+    //   add current's left and right in the queue
+    //   return current at the end of the loop
+      
+      let current;
+      let queue = [root];
+      while(queue.length !== 0){
+        current = queue.shift();
+        if(current.left) queue.push(current.left);
+        if(current.right) queue.push(current.right);
+        
+      }
+      return current.val;
+};
+
+// n = number of nodes
+// Time: O(n)   O(n^2)
+// Space: O(n)
+
+// Note: this solution should really be considered O(n^2) 
+// runtime because the JavaScript shift() methods runs in O(n). 
+// JavaScript does not have a native queue data structure that is maximally efficient.
