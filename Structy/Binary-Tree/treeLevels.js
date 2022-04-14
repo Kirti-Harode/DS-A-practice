@@ -124,4 +124,47 @@ const treeLevels = (root) => {
       return levels;
 };
     
+   
+
+// BF
+const treeLevels = (root) => {
+
+    if(root === null) return [];
+    let queue = [{node: root, levelNum: 0}];
+    let levels = []
+    while(queue.length > 0){
+      let {node, levelNum} = queue.shift();
+      
+      if(levels.length === levelNum){
+        levels.push([node.val]);
+      }else{
+        levels[levelNum].push(node.val);
+      }
+      if(node.left !== null) queue.push({node: node.left, levelNum: levelNum+1});
+      if(node.right !== null) queue.push({node: node.right, levelNum: levelNum+1});
+    }
     
+    return levels;
+};
+
+
+// recursion:
+const treeLevels = (root) => {
+    let levels = [];
+    fillLevels(root, levels, 0);
+    return levels;
+  };
+  
+  const fillLevels = (root, levels, levelNum) => {
+    if(root === null) return;
+    
+    if(levels.length === levelNum){
+      levels.push([root.val]);
+    }else{
+      levels[levelNum].push(root.val);
+    }
+    
+    fillLevels(root.left, levels, levelNum+1);
+    fillLevels(root.right, levels, levelNum+1);
+    
+}
