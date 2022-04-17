@@ -54,3 +54,10 @@ var countBinarySubstrings = function(s) {
         }
         return total;
 };
+
+
+// Complexity Analysis
+
+// Time Complexity: O(N)O(N), where NN is the length of s. Every loop is through O(N)O(N) items with O(1)O(1) work inside the for-block.
+
+// Space Complexity: O(N)O(N), the space used by groups.
