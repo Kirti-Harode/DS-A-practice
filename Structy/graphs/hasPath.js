@@ -57,3 +57,47 @@
 
 // hasPath(graph, 'v', 'z'); // false
 
+
+// DFS: 
+// n: no of nodes
+//  e: no of edges
+// time: O(e) / O(n^2) beacuse max possible edges can be n^2
+// space: O(n)
+const hasPath = (graph, src, dst) => {
+    // acyclic: no cycle
+    
+  //   use stack to track all the nodes/vertices
+  //   while stack is not empty loop over
+  //   pop an ele from stack and check if it matches t the destination
+  //   if it does then return true else at the end return false
+    
+    
+    let stack = [src]
+    while(stack.length !== 0){
+      let current = stack.pop();
+      if(current === dst) return true;
+      
+      for(let neighbor of graph[current]){
+        stack.push(neighbor);
+      }
+    }
+    return false;
+    
+};
+
+// BFS: 
+const hasPath = (graph, src, dst) => {
+ 
+    let queue = [src]
+    while(queue.length !== 0){
+      let current = queue.shift();
+      if(current === dst) return true;
+      
+      for(let neighbor of graph[current]){
+        queue.push(neighbor);
+      }
+    }
+    return false;
+    
+};
+

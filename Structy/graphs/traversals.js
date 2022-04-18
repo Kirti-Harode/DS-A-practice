@@ -5,8 +5,8 @@ const depthFirstPrint = (graph, source) => {
        let current = stack.pop();
        console.log(current);
 
-        for(let neighor of graph[current]){
-           stack.push(neighor);
+        for(let neighbor of graph[current]){
+           stack.push(neighbor);
         }
     }
 };
@@ -27,8 +27,8 @@ depthFirstPrint(graph, 'a') // acebdf to change this to abdfce change the b and 
 
 const depthFirstPrint = (graph, source) => {
     console.log(source);
-    for(let neighor of graph[source]){
-        depthFirstPrint(graph, neighor);
+    for(let neighbor of graph[source]){
+        depthFirstPrint(graph, neighbor);
     }
 };
 
@@ -41,8 +41,8 @@ const breadthFirstPrint = (graph, source) => {
        let current = queue.shift();
        console.log(current);
 
-        for(let neighor of graph[current]){
-           queue.push(neighor);
+        for(let neighbor of graph[current]){
+           queue.push(neighbor);
         }
     }
 };
