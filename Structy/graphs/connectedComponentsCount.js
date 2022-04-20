@@ -80,7 +80,7 @@ const connectedComponentsCount = (graph) => {
 };
 
 
-
+// alvin solution: 
 
 const connectedComponentsCount = (graph) => {
     let visited = new Set();
@@ -92,9 +92,9 @@ const connectedComponentsCount = (graph) => {
       }
     }
     return count;
-  };
+};
   
-  function explore(graph, current, visited){
+function explore(graph, current, visited){
     if(visited.has(String(current))) return false; //converting to String  bcos keys in hash are string so when we put that in set it still will be a sgtring so check every thing with string and add every node after coverting to string.
     
     visited.add(String(current));
@@ -103,7 +103,7 @@ const connectedComponentsCount = (graph) => {
       explore(graph, neighbor, visited);
     }
     return true;
-  }
+}
 //   n = number of nodes
 //   e = number edges
 //   Time: O(e)

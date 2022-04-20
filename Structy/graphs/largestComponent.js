@@ -46,3 +46,30 @@
 // }); // -> 3
 
 
+const largestComponent = (graph) => {
+    const visited = new Set();
+    let count = 0;
+    for(let node in graph){
+      let nodeCount = countNode(graph, node, visited);
+      if (nodeCount >= count) count = nodeCount;
+    }
+    return count;
+  };
+  
+  function countNode(graph, current, visited){
+    if(visited.has(String(current))) return 0;
+    visited.add(String(current));
+    
+    let nodeCount = 1; //count the current node also
+    
+    for(let neighbor of graph[current]){
+     nodeCount += countNode(graph, neighbor, visited);
+    }
+    return nodeCount;
+  }
+  
+  
+  // n = number of nodes
+  // e = number edges
+  // Time: O(e)
+  // Space: O(n)
