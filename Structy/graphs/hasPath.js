@@ -70,8 +70,7 @@ const hasPath = (graph, src, dst) => {
   //   while stack is not empty loop over
   //   pop an ele from stack and check if it matches t the destination
   //   if it does then return true else at the end return false
-    
-    
+     
     let stack = [src]
     while(stack.length !== 0){
       let current = stack.pop();
@@ -101,3 +100,13 @@ const hasPath = (graph, src, dst) => {
     
 };
 
+
+// DFS: Recursively =>
+const hasPath = (graph, src, dst) => {
+ 
+    if(src === dst) return true;
+    for(let neighbor of graph[src]){
+     if(hasPath(graph, neighbor, dst)) return true;
+    }
+    return false;
+};
