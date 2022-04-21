@@ -99,37 +99,37 @@ const shortestPath = (edges, nodeA, nodeB) => {
     //   pop a node check if that is in visited
     //   check if this node is nodeB or not, if true then return the level corresponding to that node from the queue
     //   add all neighbors of current node with one level up in queue.
-      let visited = new Set([nodeA]);
-      let graph = convertToGraph(edges);
-      console.log(graph)
-      let queue = [{node: nodeA, level: 0}];
-      while(queue.length > 0){
-        let current = queue.shift();
-        
-        if(current.node === nodeB){
-          return current.level;
-        }
-        for(let neighbor of graph[current.node]){
-          if(!visited.has(neighbor)){
-            visited.add(neighbor);
-            queue.push({node: neighbor, level: current.level + 1}); 
-          }
-        }
-      }
-      return -1;
-    }
-function convertToGraph(edges){
-      let graph = {};
-      for(let edge of edges){
-        const [a, b] = edge;
-        if (!graph[a]) graph[a] = [];
-        graph[a].push(b)
+    let visited = new Set([nodeA]);
+    let graph = convertToGraph(edges);
+    console.log(graph)
+    let queue = [{node: nodeA, level: 0}];
+    while(queue.length > 0){
+      let current = queue.shift();
       
-        if (!graph[b]) graph[b] = [];
-        graph[b].push(a)
-            
+      if(current.node === nodeB){
+        return current.level;
       }
-      return graph;
+      for(let neighbor of graph[current.node]){
+        if(!visited.has(neighbor)){
+          visited.add(neighbor);
+          queue.push({node: neighbor, level: current.level + 1}); 
+        }
+      }
+    }
+    return -1;
+}
+function convertToGraph(edges){
+    let graph = {};
+    for(let edge of edges){
+      const [a, b] = edge;
+      if (!graph[a]) graph[a] = [];
+      graph[a].push(b)
+    
+      if (!graph[b]) graph[b] = [];
+      graph[b].push(a)
+          
+    }
+    return graph;
 };
     
     
