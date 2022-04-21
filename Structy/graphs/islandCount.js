@@ -59,11 +59,11 @@ const islandCount = (grid) => {
     let count = 0;
     
     for(let r = 0; r < grid.length; r++){
-    for(let c= 0; c < grid[0].length; c++){
-        if(explore(grid, r, c, visited)){
-        count ++;
+        for(let c= 0; c < grid[0].length; c++){
+            if(explore(grid, r, c, visited)){
+            count ++;
+            }
         }
-    }
     }
     return count;
 };
