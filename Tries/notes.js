@@ -57,9 +57,23 @@ class Trie {
         node.isEnd = true;  //to prevent the duplicate nodes and to know reached end of the word
     };
 
-    search(word) {
+    search(word, root=this.root) {
     // TODO
     // RETURN TRUE AND FALSE
+        if(word.length === 0){
+            if(root.isEnd){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        let letter = word[0];
+        if(letter in root.children){
+            return this.search(word.slice(1), root.children[letter]);
+        }else{
+            return false;
+        }
     }
     
 }
