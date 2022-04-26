@@ -57,3 +57,47 @@
 // ];
 // semestersRequired(numCourses, prereqs); // -> 2
 
+//   make prereqs in a graph first
+//   directed acyclic graph: that's how will compelete all the courses
+//   increment no of semester according to the node num each level
+//   no of node in longest path is the no of sem
+//   for last nodes take them on level 1 and base case for DF
+//   incremet level num backwards
+//   keep visited nodes 
+const semestersRequired = (numCourses, prereqs) => {
+
+ let graph = convertToGraph(prereqs);
+  const distances = {};
+  for(let node in graph){
+    if(graph[node].length === 0) distances[node]=0;
+  }
+  
+  for(let node in graph){
+    findDistance(graph, node, distance)
+  }
+};
+
+const findDistance = (graph, node, distance) => {
+  
+}
+function convertToGraph(numCourses, prereqs){
+  let graph = {};
+  for(let i = 0; i < num)
+  for(let prereq of prereqs){
+    const [a, b] = edge;
+    if (!graph[a]) graph[a] = [];
+      graph[a].push(b)
+    
+    if (!graph[b]) graph[b] = [];
+      graph[b].push(a)
+  }
+  return graph;
+}
+
+
+
+
+
+
+
+
