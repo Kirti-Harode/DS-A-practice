@@ -28,15 +28,15 @@ const pairedParentheses = (str) => {
     //   create two var to count open and close parentheses
     //   at the end if count is same then return true else return false
       
-      let openCount = 0;
-     
-      for(let i = 0 ; i < str.length; i++){
-        if(openCount === 0 && str[i] === ')') return false;
-        if(str[i] === "(" ) openCount ++;
-        if(str[i] === ")" ) openCount --;
-      }
-      if(openCount === 0) return true;
-      return false;
+    let openCount = 0;
+    
+    for(let i = 0 ; i < str.length; i++){
+    if(openCount === 0 && str[i] === ')') return false;
+    if(str[i] === "(" ) openCount ++;
+    if(str[i] === ")" ) openCount --;
+    }
+    if(openCount === 0) return true;
+    return false;
 };
 
 
