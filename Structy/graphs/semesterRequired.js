@@ -82,7 +82,9 @@ const findDistance = (graph, node, distance) => {
 }
 function convertToGraph(numCourses, prereqs){
   let graph = {};
-  for(let i = 0; i < num)
+//   for(let i = 0; i < num){
+
+//   }
   for(let prereq of prereqs){
     const [a, b] = edge;
     if (!graph[a]) graph[a] = [];
