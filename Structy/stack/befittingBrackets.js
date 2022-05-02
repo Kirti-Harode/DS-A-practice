@@ -43,8 +43,7 @@ const befittingBrackets = (str) => {
         }
     }
     return stack.length === 0;
-      
-    };
+};
 // n = length of string
 // Time: O(n)
 // Space: O(n)
