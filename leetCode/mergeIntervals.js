@@ -47,5 +47,31 @@ var merge = function(intervals) {
     // stack could be useful in simplifying this problem
     
     
-
+     // time complexity: 
+        // n = n is input length
+        // sort = O(nlogn), while loop: O(n)
+        // total time: O(nlogn)
+    //  space: O(n) for stack
+    let sorted = intervals.sort((a,b) => ( a[0] - b[0])); 
+    let stack = [sorted[0]];
+    
+    let i = 1;
+    while( i < sorted.length){
+        let current = sorted[i];
+        let prev = stack[stack.length-1];
+        
+        if(prev[1] >= current[0]){
+            if (current[1] > prev[1]) {
+                stack[stack.length-1] = ([prev[0], current[1]]);
+            } else{
+                stack[stack.length-1] = ([prev[0], prev[1]]);
+            }  
+           
+        }else{
+            stack.push(current);
+        }
+        i++;
+    }
+    
+    return stack;
 };
