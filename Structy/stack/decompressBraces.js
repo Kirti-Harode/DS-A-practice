@@ -32,3 +32,48 @@
 // decompressBraces("3{al4{ec}2{icia}}"); 
 // // -> alececececiciaiciaalececececiciaiciaalececececiciaicia 
 
+
+
+const decompressBraces = (s) => {
+    let nums = [1,2,3,4,5,6,7,8,9];
+    let stack = [];
+    let i = 0;
+    while(i < s.length){
+      if(nums.includes(Number(s[i]))){
+        stack.push(Number(s[i]));
+      }else{
+        if(s[i] === '}'){
+          let str = '';
+          while(!nums.includes(stack[stack.length-1])){
+            str = stack.pop() + str;
+          }
+          stack.push(repeat(str, stack.pop()));
+          
+        }else if(s[i] !== '{'){
+          stack.push(s[i]);
+        } 
+      }
+      i++;
+    }
+    return stack.join("")
+  };
+  
+  
+  
+  const repeat = (str, n) => {
+    let result = '';
+    for(let i = 0; i < n; i++){
+      result += str;
+    }
+    return result;
+  }
+  
+  
+  decompressBraces("2{y3{o}}s"); 
+  
+  
+  // time complexity:
+  // s = length of string
+  // m = count of brace pairs
+  // Time: O((9^m) * s)
+  // Space: O((9^m) * s)
