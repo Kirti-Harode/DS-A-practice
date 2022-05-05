@@ -24,4 +24,42 @@
 // test_09:
 // sumPossible(13, [3, 5]); // -> true
 
+const sumPossible = (amount, numbers) => {
+// base case return true if amount is 0
+// base case return false if amount is 1
+// iterate over the numbers
+// for first num minus the target and save remaining from remaing minus every num untill reach 0
 
+// time: O(n^a)
+ // Space: O(a)
+    if(amount === 0) return true;
+    if(amount < 0) return false;
+    
+    for(let num of numbers){
+        if(sumPossible(amount - num, numbers)){
+            return true;
+        }
+    }
+    return false;
+};
+
+
+const sumPossible = (amount, numbers, memo={}) => {
+    if(amount in memo) return memo[amount];
+    if(amount === 0) return true;
+    if(amount < 0) return false;
+   
+    for(let num of numbers){
+      if(sumPossible(amount - num, numbers, memo)){
+        memo[amount] = true;
+        return true;
+      }
+    }
+    memo[amount] = false;
+    return false;
+};
+  
+  // a = amount
+  // n = length of numbers
+  // Time: O(a*n)
+  // Space: O(a)
