@@ -26,3 +26,20 @@
 // test_07:
 // fib(46); // -> 1836311903
 
+const fib = (n) => {
+    // time complexity => O(2^n)
+    // space complexity => O(n)
+    if(n === 0) return 0;
+    if(n === 1) return 1;
+    return fib(n-1) + fib(n-2)
+};
+
+const fib = (n, memo={}) => {
+    // time complexity => O(n)
+    // spcae complexity => O(n)
+    if(n in memo) return memo[n];
+    if(n === 0) return 0;
+    if(n === 1) return 1;
+    memo[n] = fib(n-1, memo) + fib(n-2, memo);
+    return memo[n];
+};
