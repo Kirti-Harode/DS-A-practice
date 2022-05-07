@@ -161,8 +161,8 @@ const pathFinder = (root, target) => {
     } else {
       return result.reverse();
     }
-  };
-  const pathFinderHelper = (root, target) => {
+};
+const pathFinderHelper = (root, target) => {
   // time: O(n), space: O(n)
   //   root matches target return root in a array
   //   root is null return null
@@ -182,5 +182,5 @@ const pathFinder = (root, target) => {
       return rightPath;
     }
     return null;
-  };
+};
    
