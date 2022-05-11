@@ -75,3 +75,31 @@ var merge = function(intervals) {
     
     return stack;
 };
+
+// Alex Mak solution:
+const merge = function(intervals) {
+    if (intervals.length <= 1) return intervals;
+    
+    intervals.sort((a,b) => a[0] -b[0]);
+    let outputArr = [intervals[0]];
+    
+    
+    for (let i=1; i<intervals.length; i++) {
+        const currIntvl = {
+            start: intervals[i][0],
+            end: intervals[i][1],
+        }
+        
+        const lastIntvlIdx = outputArr.length-1;
+        const lastIntvl = {
+            start: outputArr[lastIntvlIdx][0],
+            end: outputArr[lastIntvlIdx][1]
+        }
+        
+
+        if (currIntvl.start <= lastIntvl.end && currIntvl.end > lastIntvl.end) outputArr[lastIntvlIdx][1] = currIntvl.end;
+        if (currIntvl.start <= lastIntvl.end && currIntvl.end <= lastIntvl.end) continue;
+        if (currIntvl.start > lastIntvl.end) outputArr.push(intervals[i]);
+    }
+    return outputArr;
+};
