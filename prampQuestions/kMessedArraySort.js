@@ -11,6 +11,24 @@
 // 1 <= arr.length <= 100
 // 0 <= k <= 20
 
-function sortKMessedArr(arr){
-
+function sortKMessedArr(arr, k){
+    let result = [];
+    for(let i = 0; i < arr.length; i++){
+        let min = Infinity;
+        let end = i+k;
+        // if(end < arr.length){
+            for(let j = i; j <= end; j++){
+                if( arr[j] > result[result.length-1]  && arr[j] < min) min = arr[j];
+            }
+        // }
+       
+        result.push(min);
+    }
+    console.log(result);
 }
+
+let arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9]
+let k = 2
+sortKMessedArr(arr, k);
+
+// function findMin()
