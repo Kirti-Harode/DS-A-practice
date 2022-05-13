@@ -135,9 +135,10 @@ const treeLevels = (root) => {
     while(queue.length > 0){
       let {node, levelNum} = queue.shift();
       
-      if(levels.length === levelNum){
-        levels.push([node.val]);
-      }else{
+      if(levels.length === levelNum){  //is there any sub array at levelNum 
+        levels.push([node.val]);        // if no add the subarr with node in it at levelNum index
+        // levels[levelNum] = [node.val]
+      }else{                             // if yes then push the node's val
         levels[levelNum].push(node.val);
       }
       if(node.left !== null) queue.push({node: node.left, levelNum: levelNum+1});
