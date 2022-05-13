@@ -83,21 +83,6 @@
 // test_04:
 // leafList(null); // -> [ ]
 
-const leafList = (root) => {
-    if(root === null) return [];
-    let leaves = [];
-    let stack = [root];
-    while(stack.length > 0){
-      let current = stack.pop();
-      if(current.left === null && current.right === null){
-        leaves.push(current.val);
-      }
-      if(current.left) stack.push(current.left);
-      if(current.right) stack.push(current.right);
-      
-    }
-    return leaves.reverse();
-};
 
 const leafList = (root) => {
     if(root === null) return [];
@@ -107,6 +92,9 @@ const leafList = (root) => {
     let rightVal = leafList(root.right);
     
    return leftVal.concat(rightVal);
+
+  // return [...leafList(root.left), ...leafList(root.right)]
+  
 };
 
 
@@ -126,9 +114,13 @@ const leafList = (root) => {
   }
   return leaves;
 };
+
+
 // n = number of nodes
 // Time: O(n)
 // Space: O(n)
+
+
 // depth first (recursive)
 const leafList = (root) => {
   const leaves = [];
@@ -145,3 +137,4 @@ const fillLeaves = (root, leaves) => {
 // n = number of nodes
 // Time: O(n)
 // Space: O(n)
+
