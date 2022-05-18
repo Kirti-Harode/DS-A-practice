@@ -110,6 +110,8 @@
 // undirectedPath(edges, 'r', 't'); // -> true
 
 
+// uses set to keep track of nodes eacuse it is a undirectional graph so 
+// ther can be a cycle, to avoid getting in a Infinity loop, use a set
 const undirectedPath = (edges, nodeA, nodeB) => {
     //   convert the  edges to an graph
     //   then use traversal to find the path
