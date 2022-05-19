@@ -49,16 +49,34 @@
 
 // not working yet
 function shortestCellPath(grid, sr, sc, tr, tc){
-    if( sr === grid.length || sc === grid[0].length || grid[sr][sc] === 0) return 0;
-    if(sr === tr && sc === tc || grid[sr][sc] === 1) return 1;
+    let visited = new Set();
+    let pos = sr + ',' + sc;
+    visited.add(pos);
 
-    const downCount = shortestCellPath(grid, sr+1, sc);
-    const rightCount = shortestCellPath(grid, sr, sc+1);
-    const leftCount = shortestCellPath(grid, sr, sc-1);
-    const upCount = shortestCellPath(grid, sr-1, sc);
+    let queue = [[sr, sc, 0]];
+    while(queue.length > 0){
+        let [r, c, dist] = queue.pop();
+        if(r === tr && c === tc) return dist;
 
+        const deltas = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+        for(let delta of deltas){
+            let [rowDelta, colDelta] = delta;
 
-    return downCount + rightCount + leftCount + upCount;
+            let newRow = r + rowDelta;
+            let newCol = c + colDelta;
+
+            let rowBounds = newRow >= 0 && newRow < grid.length;
+            let colBounds = newCol >= 0 && newCol < grid[0].length;
+
+            let pos = newRow + ',' + newCol;
+            if(rowBounds && colBounds && grid[newRow][newCol] === 1 && !visited.has(pos)){
+                queue.push([newRow, newCol, dist+1]);
+                visited.add(pos);
+            }
+        }
+    }
+    return -1;
+    
 }
 
 // grid = [
@@ -70,14 +88,21 @@ function shortestCellPath(grid, sr, sc, tr, tc){
 
 
 
-let grid = [
+// let grid = [
+//     [1, 1, 1, 1], 
+//     [0, 0, 0, 1], 
+//     [1, 1, 1, 1]
+//     ]
+// let sr = 0
+// let sc = 0
+// let tr = 2
+// let tc = 0
+
+grid = [
     [1, 1, 1, 1], 
     [0, 0, 0, 1], 
-    [1, 1, 1, 1]
-    ]
-let sr = 0
-let sc = 0
-let tr = 2
-let tc = 0
-
-console.log(shortestCellPath(grid, 0, 0, 2, 0));
+    [1, 0, 1, 1]
+]
+sr = 0, sc = 0, tr = 2, tc = 0
+// output: -1
+console.log(shortestCellPath(grid, sr, sc, tr, tc));
