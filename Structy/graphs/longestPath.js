@@ -54,7 +54,7 @@ const longestPath = (graph) => {
 //   DFS
 //   find a final node which does not have any arrow going from
 //   make them as base cases and at base 0
-//   use visited to keep track of visited node
+
       
     const distance = {};
     for(let node in graph){
@@ -70,7 +70,7 @@ const longestPath = (graph) => {
 };
     
 const traverseDistance = (graph, node, distance) => {
-    if(node in distance) return distance[node];
+    if(node in distance) return distance[node];        //already in distance so just return its val 
       
     let maxLength = 0;
     for(let neighbor of graph[node]) {
@@ -78,7 +78,7 @@ const traverseDistance = (graph, node, distance) => {
         if(len > maxLength) maxLength = len;
     }
       
-    distance[node] = 1 + maxLength;
+    distance[node] = 1 + maxLength;   //one edge away from neighbor, increase one for the neighbor
     return distance[node];
 }
     

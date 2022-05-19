@@ -64,37 +64,52 @@
 //   for last nodes take them on level 1 and base case for DF
 //   incremet level num backwards
 //   keep visited nodes 
-const semestersRequired = (numCourses, prereqs) => {
 
- let graph = convertToGraph(prereqs);
-  const distances = {};
+// convert it to a adj list, traverse normally using dfs and find the longest path, note: count nodes not edges.
+const semestersRequired = (numCourses, prereqs) => {
+  let graph = buildGraph(numCourses, prereqs);
+
+  let distance = {};
   for(let node in graph){
-    if(graph[node].length === 0) distances[node]=0;
+    if(graph[node].length === 0){
+      distance[node] = 1;
+    }
   }
-  
   for(let node in graph){
-    findDistance(graph, node, distance)
+    traverseDist(graph, node, distance);
   }
+  return Math.max(...Object.values(distance));
 };
 
-const findDistance = (graph, node, distance) => {
-  
-}
-function convertToGraph(numCourses, prereqs){
-  let graph = {};
-//   for(let i = 0; i < num){
 
-//   }
-  for(let prereq of prereqs){
-    const [a, b] = edge;
-    if (!graph[a]) graph[a] = [];
-      graph[a].push(b)
-    
-    if (!graph[b]) graph[b] = [];
-      graph[b].push(a)
+function traverseDist(graph, node, distance){
+  if(node in distance) return distance[node];
+  
+  let maxLen = 0;
+  for(let neighbor of graph[node]){
+    let len = traverseDist(graph, neighbor, distance);
+    if(len > maxLen) maxLen = len;
   }
-  return graph;
+  distance[node] = maxLen + 1;
+  return distance[node];
 }
+
+
+const buildGraph = (numCourses, prereqs) => {
+  const graph = {};
+  
+  for (let i = 0; i < numCourses; i += 1) {
+    graph[i] = [];
+  }
+  
+  for (let prereq of prereqs) {
+    const [a, b] = prereq;
+    graph[a].push(b);
+  }
+  
+  return graph;
+};
+
 
 
 
