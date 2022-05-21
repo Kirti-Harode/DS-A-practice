@@ -97,3 +97,12 @@ const isUnivalueList = (head, prevVal=null) => {
       return false;
     }
 };
+
+
+const isUnivalueList = (head) => {
+ 
+  if(head === null) return false;
+  // if(head.val !== head.next) return false;
+  
+  return head.val === isUnivalueList(head.next);
+};
