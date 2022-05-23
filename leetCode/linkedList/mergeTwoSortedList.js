@@ -63,8 +63,6 @@ var mergeTwoLists = function(list1, list2) {
 // space: O(n+m)
 var mergeTwoLists = function(list1, list2) {
 
-    
-    
     if(list1 === null && list2 === null) return null;
     if(list1 === null) return list2;
     if(list2 === null) return list1;
