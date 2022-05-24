@@ -29,14 +29,12 @@ var addTwoNumbers = function(l1, l2) {
     let head1 = reverseList(l1);
     let head2 = reverseList(l2);
     
-    
     let dummyHead = new ListNode(null);
     let tail = dummyHead;
     let current1 = head1;
     let current2 = head2;
     let carry = 0;
-     
-  
+    
     while(current1 !== null || current2 !== null || carry === 1){
         
         let val1 = current1 ? current1.val : 0;

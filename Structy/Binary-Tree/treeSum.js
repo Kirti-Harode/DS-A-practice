@@ -99,6 +99,14 @@ const treeSum = (root) => {
     return root.val + treeSum(root.left) + treeSum(root.right);
 };
 
+const treeSum = (root, sum=0) => {
+  if(root === null) return 0;
+  sum += root.val
+  sum += treeSum(root.left);
+  sum += treeSum(root.right);
+ 
+  return sum
+};
 
 
 // iterative: Breadth first
