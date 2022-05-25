@@ -141,3 +141,10 @@ const treeValueCount = (root, target) => {
      
       return count;
 };
+
+const treeValueCount = (root, target) => {
+  if(root === null) return 0;
+  let match = root.val === target ? 1 : 0;
+  return match + treeValueCount(root.left, target) + treeValueCount(root.right, target);
+  
+};
