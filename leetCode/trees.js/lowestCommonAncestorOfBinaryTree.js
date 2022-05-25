@@ -38,7 +38,7 @@
 // s = len of set
 
 // time: O(n)
-// space:O(p1 + p2 + s)
+// space:O(n + p1 + p2 + s)
 var lowestCommonAncestor = function(root, p, q) {  
     let path1 = findPath(root, p);
     let path2 = findPath(root, q);
