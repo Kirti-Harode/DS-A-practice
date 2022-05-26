@@ -74,6 +74,9 @@
 // linkedPalindrome(null); // true
 
 
+// n = number of nodes
+// Time: O(n)
+// Space: O(n)
 const linkedPalindrome = (head) => {
     // traverse through all nodes in linkedlist and save it in array
     // reverse array and then compare
@@ -98,6 +101,54 @@ const linkedPalindrome = (head) => {
     return true;
 };
 
+
 // n = number of nodes
 // Time: O(n)
-// Space: O(n)
+// Space: O(1)
+
+class Node {
+    constructor(val) {
+      this.val = val;
+      this.next = null;
+    }
+}
+  
+const linkedPalindrome = (head) => {
+    if(head === null) return true;
+    let firstHalfEnd = getmid(head);
+    let reverseSecHalf = revrseList(firstHalfEnd.next);
+    
+    let current1 = head;
+    let current2 = reverseSecHalf;
+    let result = true;
+    while(result && current2 !== null){
+      if(current1.val !== current2.val) result = false;
+      
+      current1 = current1.next;
+      current2 = current2.next;
+    }
+    return result;
+};
+  
+function getmid(head){
+    let slow = head;
+    let fast = head;
+    while(fast.next !== null && fast.next.next !== null){ 
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    return slow;
+}
+  
+function revrseList(head){
+    let prev = null;
+    let current = head;
+    while(current !== null){
+      
+      let next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    return prev;
+}
