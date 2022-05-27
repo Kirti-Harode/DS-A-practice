@@ -158,3 +158,32 @@ const leftyNodes = (root) => {
     return values;
 };
   
+
+// iterative : 
+const leftyNodes = (root) => {
+  //   depth first
+  //   left to right
+  //   keep track of level num
+  //   create a results arr
+  //   add node to the results arr on that index, if not already present
+  //   if already present then just continue
+  //   push current nodes left and right in the stack, 
+  // push right first and left at the end 
+  // so the next node poped from stack will be left one not the right.
+    
+  //   return results arr;
+    
+    if(root === null) return [];
+    let leftyNodes = [];
+    let stack = [[root, 0]];
+    
+    while(stack.length > 0){
+      let [node, levelNum] = stack.pop();
+      if(leftyNodes.length === levelNum){
+        leftyNodes.push(node.val);
+      }
+      if(node.right) stack.push([node.right, levelNum+1]);
+      if(node.left) stack.push([node.left, levelNum+1]);
+    }
+    return leftyNodes;
+  };

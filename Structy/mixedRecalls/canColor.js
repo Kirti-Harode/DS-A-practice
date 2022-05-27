@@ -66,3 +66,32 @@
 // }); // -> false
 
 
+// n = number of nodes, e = number of edges
+// Time: O(n^2)  O(e)
+// Space: O(n)
+const canColor = (graph) => {
+
+//  true and false for the two colors and 
+//  coloring object as check for visited nodes and color them
+//   store node as key and add color as value
+//   iterate for each ndoes and its neghbors and add altered color
+let coloring = {};
+  
+for(let node in graph){
+  if(!(node in coloring) && !valid(graph, node, coloring, false)){
+     return false;
+  }
+}
+return true;
+};
+
+function valid(graph, node, coloring, currentColor){
+if(node in coloring) return currentColor === coloring[node];
+
+coloring[node] = currentColor;
+
+for(let neighbor of graph[node]){
+  if(!valid(graph, neighbor, coloring, !currentColor)) return false;
+}
+return true;
+}
