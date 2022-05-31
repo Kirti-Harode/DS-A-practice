@@ -88,3 +88,75 @@ var flatten = function(head) {
 // n = num of nodes 
 // time: O(n)
 // space: O(n)
+
+// recursive solution
+// time:O(n)
+// space:O(n)
+var flatten = function(head) {
+    recFlatten(head);
+    return head;
+};
+
+var recFlatten = function(head) {
+        
+    if(head === null) return null;
+    let current = head;
+    
+    while(current.next !== null){
+        let child = current.child;
+        let next = current.next;
+        
+        if(child !== null){
+            let end = recFlatten(current.child);
+            end.next = next;
+            next.prev = end;
+            current.next = child;
+            child.prev = current;
+            current.child = null;
+            current = end.next;
+        }else{
+            current = next;
+        }        
+    }
+    let child = current.child;
+      if(child !== null){
+            let end = recFlatten(current.child);
+            end.next = null;
+            current.next = child;
+            child.prev = current;
+            current.child = null;
+            current = end;
+        }
+    return current;
+}
+
+
+// one more recursion
+
+var flatten = function(head) {
+        
+    if(head === null) return null;
+    
+    if(head.child === null){
+        flatten(head.next);
+    }else{
+        let next = head.next;
+        let newNext = flatten(head.child);
+        
+        head.next = newNext;
+        newNext.prev = head;
+        head.child = null;
+        
+        let current = head.next;
+        while(current.next !== null){
+            current = current.next;
+        }
+        
+        if(next){
+            current.next = next;
+            next.prev = current;
+        }
+    }
+    
+    return head;
+};
