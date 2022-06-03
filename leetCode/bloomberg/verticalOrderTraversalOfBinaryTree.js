@@ -116,12 +116,8 @@ min = Infinity;
 max = -Infinity;
 
 var verticalTraversal = function(root) {
-    
-   
     let allNodes = {};
-    
     _verticalTraversal(root, 0, 0, allNodes)
-
     let result = [];
     
     for(let i = min; i <= max; i++){
@@ -150,12 +146,10 @@ var verticalTraversal = function(root) {
 };
 
 var _verticalTraversal = function(root, row, col, allNodes) {
-    
     if(root === null) return null;
     
     min = Math.min(min, col);
     max = Math.max(max, col);
-    
     
     if(allNodes[col] === undefined) {
             allNodes[col] = { };
