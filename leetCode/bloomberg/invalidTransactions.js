@@ -33,3 +33,57 @@
 
 
 
+// create an ouput array for invalid transactions
+// create an empty object to keep data for each user, user name as a key and value an array of all trans
+// sort the input, in increasing order of time
+// loop over the input add usera as a key and val as all the trans in array
+// loop over the input again if amount is more then 1000 push that transaction into the output arra
+// for other trans, check the name in data object loop over those transaction and for each transaction check for time diff and city name 
+// if invalid then add those transactions to the output array
+
+// time: O(m*nlogn)   n = len of input, m = num of trans with same name
+// space: O(n)   for the data hash and n for output also
+var invalidTransactions = function(transactions) {      //n = length of input
+    let invalidTrans = [];
+    let data = {};
+    transactions = transactions.sort((a,b) => a[1]-b[1]);            //O(nlogn)
+    for(let ele of transactions){                                     //O(n)
+        let transaction = ele.split(",");
+        let name = transaction[0];
+        let time = parseInt(transaction[1]);
+        let amount = transaction[2];
+        let city = transaction[3];
+
+        if(!(name in data)){
+            data[name] = [[time, amount, city]];
+        }else{
+           data[name].push( [time, amount, city]);     
+        }
+    }
+
+    for(let ele of transactions){                           //O(n)
+        let transaction = ele.split(",");
+        let name = transaction[0];
+        let time = transaction[1];
+        let amount = transaction[2];
+        let city = transaction[3];
+        
+        if(amount > 1000){
+            invalidTrans.push(ele);
+            continue;
+        }
+        if(name in data){                        
+            for(let sub of data[name]){                   //m = all the transactions from same name, O(m)
+                // console.log(sub)
+                let timeDiff = Math.abs(time - parseInt(sub[0]))
+                if( timeDiff <= 60 && city !== sub[2]){
+                    // console.log('true')
+                    invalidTrans.push(ele);
+                    break;
+                }
+            }
+        }
+    }
+    
+    return invalidTrans;
+};

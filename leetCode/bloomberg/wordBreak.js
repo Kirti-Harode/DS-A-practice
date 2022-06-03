@@ -30,6 +30,7 @@
 // All the strings of wordDict are unique.
 
 
+// alvin solution not good
 var wordBreak = function(s, wordDict, memo={}) {
     if(s in memo) return memo[s];
     if(s.length === 0) return true;
@@ -45,5 +46,28 @@ var wordBreak = function(s, wordDict, memo={}) {
    } 
     memo[s] = false;
     
+    return memo[s];
+};
+
+// best solution
+// convert wordDict to a set
+var wordBreak = function(s, wordDict, memo={}) {
+    
+    if(s in memo) return memo[s]
+    if(s.length === 0) return true;
+    
+    let i = 0;
+    let word = '';
+    while(i < s.length){
+        word += s[i];
+        if(wordDict.includes(word)){
+            if(wordBreak(s.slice(word.length), wordDict, memo)){
+                memo[s] = true;
+                return true;
+            }
+        }
+        i ++;
+    }
+    memo[s] = false
     return memo[s];
 };

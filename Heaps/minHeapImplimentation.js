@@ -20,7 +20,12 @@ class Heap {
         this.data[i1] = this.data[i2];
         this.data[i2] = temp;
     }
-
+    size(){
+        return this.data.length;
+    }
+    peek(){
+        return this.data[0];
+    }
     push(val){
         this.data[this.data.length] = val;
         this.heapifyUp();
@@ -28,10 +33,10 @@ class Heap {
 
     heapifyUp(){
         let currentIndex = this.data.length-1;
-        let parentIndex = this.getParentIndex(currentIndex);
-        while(this.data[currentIndex] < this.data[parentIndex]){
-            this.swap(currentIndex, parentIndex);
-            currentIndex = parentIndex;
+        
+        while(this.data[currentIndex] < this.data[this.getParentIndex(currentIndex)]){
+            this.swap(currentIndex, this.getParentIndex(currentIndex));
+            currentIndex = this.getParentIndex(currentIndex);
         }
     }
 
@@ -45,12 +50,11 @@ class Heap {
 
     heapifyDown(){
         let currentIndex = 0;
-        let leftChildIndex = this.getLeftChildIndex(currentIndex);
-        while(this.data[leftChildIndex] !== undefined){
-            let smallestChildIndex = leftChildIndex;
+        while(this.data[this.getLeftChildIndex(currentIndex)] !== undefined){
+            let smallestChildIndex = this.getLeftChildIndex(currentIndex);
             let rightChildIndex = this.getRightChildIndex(currentIndex);
 
-            if(this.data[rightChildIndex] !== undefined && this.data[currentIndex] > this.data[rightChildIndex]){
+            if(this.data[rightChildIndex] !== undefined && this.data[smallestChildIndex] > this.data[rightChildIndex]){
                 smallestChildIndex = rightChildIndex;
             }
 
