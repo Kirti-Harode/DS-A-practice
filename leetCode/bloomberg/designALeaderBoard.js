@@ -164,3 +164,62 @@ class Heap {
         }
     }
 }
+
+
+
+// brute force: not properly working yet
+var Leaderboard = function() {
+    this.board = {};
+    this.scores = [];
+};
+
+/** 
+ * @param {number} playerId 
+ * @param {number} score
+ * @return {void}
+ */
+Leaderboard.prototype.addScore = function(playerId, score) {
+    if(this.board[playerId] === undefined){
+        this.scores.push([playerId, score])
+        this.board[playerId] = this.scores.length-1;
+      
+         
+        // console.log(this.scores)
+        
+    }else{
+        let index = this.board[playerId];
+        this.scores[index][1] += score;
+        // console.log(this.scores)
+    }
+};
+
+/** 
+ * @param {number} K
+ * @return {number}
+ */
+Leaderboard.prototype.top = function(K) {
+    let sorted = this.scores.sort((a,b) => b[1]-a[1]);
+    let sum = 0;
+    let i = 0;
+    while(K > 0){
+        sum += this.scores[i][1];
+        i ++;
+        K--;
+    }
+    return sum;
+};
+
+/** 
+ * @param {number} playerId
+ * @return {void}
+ */
+Leaderboard.prototype.reset = function(playerId) {
+    let index = this.board[playerId];
+    let [lastPlayer, lastScore] = this.scores[this.scores.length-1];
+    this.scores[index] = [lastPlayer, lastScore];
+    this.scores.length --;
+    this.board[lastPlayer] = index;
+        // console.log(this.scores)
+    
+    delete this.board[playerId];
+};
