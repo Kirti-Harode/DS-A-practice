@@ -89,7 +89,7 @@ var topKFrequent = function(words, k) {
 
 var topKFrequent = function(words, k) {
     let freq = {};
-    for(word of words){
+    for(let word of words){
         if(freq[word] === undefined){
             freq[word] = 1;
         }else{
