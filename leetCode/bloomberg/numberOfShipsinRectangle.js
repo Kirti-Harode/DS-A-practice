@@ -78,7 +78,7 @@
 
 // from solutions: working
 var countShips = function(sea, topRight, bottomLeft) {
-    //     divid each ranct in to 4 ract
+    //     divid each ract in to 4 ract
     //     check if they have ship if true divid again in four parts recursively 
     //     add all the returned values from the four parts together and return them
     //     base cases will be: if toprights.x is smaller than bottomleft.x or same for y return 0

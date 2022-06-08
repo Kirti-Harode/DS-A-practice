@@ -32,7 +32,8 @@
 // costs.length is even.
 // 1 <= aCosti, bCosti <= 1000
 
-
+// sort arrr with cost diff, a-b, in ascending order
+//that way all the people with lowest cost for a will go to a city and other will go to city b
 var twoCitySchedCost = function(costs) {
     
     costs.sort((a,b) => (a[0]-a[1]) - (b[0]-b[1]));

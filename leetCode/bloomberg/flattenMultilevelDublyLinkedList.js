@@ -147,16 +147,17 @@ var flatten = function(head) {
         newNext.prev = head;
         head.child = null;
         
+        // to , iterate over each node of child list and connect them
         let current = head.next;
         while(current.next !== null){
             current = current.next;
         }
         
+        //to connect back the child end to parent's next
         if(next){
             current.next = next;
             next.prev = current;
         }
     }
-    
     return head;
 };
