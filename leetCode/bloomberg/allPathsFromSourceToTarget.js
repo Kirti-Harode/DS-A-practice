@@ -47,3 +47,33 @@ const traverse = (graph, node, dst, path, result) => {
 
 // time: O(2^n * n)  // with every new node paths will double
 // space:  O(2^n * n)
+
+
+var allPathsSourceTarget = function(graph) {
+    let adjList = buildAdjList(graph);
+    let dst = graph.length -1;
+    
+    return traverse(adjList, 0, dst);
+    
+};
+
+function traverse(adjList, root, dst){
+    if(root === dst) return [[root]];
+    let paths = [];
+    for(let neighbor of adjList[root] ){
+        let result = traverse(adjList, neighbor, dst);
+        for(let sub of result){
+            paths.push([root, ...sub]);
+        }
+    }
+    return paths;
+}
+
+function buildAdjList(graph){
+    let adjList = {};
+    for(let i = 0; i < graph.length; i++){
+        adjList[i] = graph[i];
+    }
+    
+    return adjList;
+}

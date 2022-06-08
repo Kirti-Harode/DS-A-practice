@@ -40,9 +40,7 @@ var candyCrush = function(board) {
     //     replace all the non zero/negative val in a col to the bottom and at the top fill zeros
     //     if done is true return the board otherwise randomly call the function
         
-        
     if(board.length === 0) return board;
-    
     let done = true;
     
 //     step 1: CRUSH ROWS
@@ -96,7 +94,6 @@ var candyCrush = function(board) {
             }
         }
     }
-    
     
     if(done === true){
         return board;
