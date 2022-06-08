@@ -70,3 +70,31 @@ var missingElement = function(nums, k) {
     return nums[i] + k;
 };
 
+// Binary search: time: O(logn)
+
+
+var missingElement = function(nums, k) {
+    let left = 0;
+    let right = nums.length;
+    let n = nums.length;
+    let totalMissingCount = (nums[n-1] - nums[0] -( n-1));
+    
+    if(k > totalMissingCount){
+        k = k - totalMissingCount;
+        return nums[n-1] + k 
+    }
+    
+    while(left < right){      //l=3, r=4                //   [4,7,9,10], k=5       =>[5,6,8,11,12,13...]
+        let mid = Math.floor((left + right) / 2);   //mid = 3
+        
+        let missingCount = nums[mid] - nums[left] - mid;   //mc = 3
+        
+            if(missingCount < k){                 // 3<5
+                left = mid+1;                 // l=3
+                k = k - missingCount;       // k = 2
+            }else {
+                right = mid;          // r = 
+            }
+    }
+    return nums[left-1] + k 
+};
