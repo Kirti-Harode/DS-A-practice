@@ -55,3 +55,29 @@ var minSteps = function(s, t) {
     }
     return total;
 };
+
+
+var minSteps = function(s, t) {  // "leetcode",  "practice"
+    let freq = {};          //{l: 1, e:2, t:0, c:0, o:1, d:1}
+    let count = 0;
+    for(let char of s){
+        if(freq[char] === undefined){
+            freq[char] = 1;
+        }else{
+            freq[char]++;
+        }
+    }
+    
+    for(let char of t){    //"practice"
+       if(freq[char] === undefined) {
+           count += 1;      // 5
+       }else{
+           if(freq[char] > 0){
+               freq[char] -= 1;
+           }else{
+               count += 1;
+           }
+       }
+    }
+    return count;
+};
