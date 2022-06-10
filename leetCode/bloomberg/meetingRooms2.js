@@ -34,7 +34,7 @@ var minMeetingRooms = function(intervals) {
     let start = 0;
     let end = 0;
     
-    while(start < intervals.length){
+    while(start < startTimes.length){
         if(startTimes[start] < endTimes[end]){
             count ++;
             start ++;

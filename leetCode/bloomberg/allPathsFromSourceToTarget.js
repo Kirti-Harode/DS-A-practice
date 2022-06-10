@@ -21,28 +21,29 @@
 // The input graph is guaranteed to be a DAG.
 
 
+// Time Complexity: O(2^N * N), beacuse as nodes increse path will double, possible paths: 2^n-1 - 1
+// to build each path it will be O(n) time and n-2 nodes
+// Space Complexity: O(2^N * N)
 
 var allPathsSourceTarget = function(graph) {
-    let n = graph.length-1;
-    let result = [];
+    let result =[];
     let path = [];
-    
-    traverse(graph, 0, n, path, result);
-    
+    let dst = graph.length-1;
+    dfs(graph, 0, dst, result, path);  //0, 3
+    //  console.log(result);
     return result;
 };
 
-
-const traverse = (graph, node, dst, path, result) => {
-    
-    path.push(node);
-    if(node === dst) result.push([...path]);
-    
-    for(let neighbor of graph[node]){
-        traverse(graph, neighbor, dst, path, result);
+    // add the src node, call its neighbors rec and aftercalling neighbor start removing the node to add diff child in it
+function dfs(graph, src, dst, result, path){
+    path.push(src);    //[0,2 , 3]
+    if(src === dst) result.push([...path]);  // [[]] ,
+    // deconstr. array beause it is passed by refernec and if pushed without decons, it will just add those pointers not the actual values.
+    //especially because path arr is changing 
+    for(let neighbor of graph[src]){   //[1,2] [3] 
+        dfs(graph, neighbor, dst, result, path); 
     }
-    
-    path.pop()
+    path.pop();
 }
 
 // time: O(2^n * n)  // with every new node paths will double

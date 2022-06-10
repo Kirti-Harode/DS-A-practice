@@ -114,52 +114,42 @@ var verticalTraversal = function(root) {
 
 min = Infinity;
 max = -Infinity;
-
 var verticalTraversal = function(root) {
     let allNodes = {};
-    _verticalTraversal(root, 0, 0, allNodes)
+    _verticalTraversal(root, 0, 0, allNodes);
+    // console.log(allNodes)
     let result = [];
     
     for(let i = min; i <= max; i++){
-        if(i in allNodes){
+        if(allNodes[i]){
             let vals = Object.values(allNodes[i]);
-            let subArr = []
-            if(vals.length > 1){
-                for(let sub of vals){
-                    if(sub.length > 1){
-                        sub = sub.sort((a,b) => a-b)
-                    }
-                    for(let ele of sub){
-                        subArr.push(ele);
-                    }
+            let subArr = [];
+            for(let sub of vals){
+                if(sub.length > 1){
+                    sub.sort((a,b) => a-b);
                 }
-                result.push(subArr);
-            }else{
-                for(let sub of vals){
-                    result.push(sub)
+                for(let ele of sub){
+                    subArr.push(ele);
                 }
             }
-
+            result.push(subArr);   
         }
     }
     return result;
 };
 
-var _verticalTraversal = function(root, row, col, allNodes) {
-    if(root === null) return null;
-    
-    min = Math.min(min, col);
-    max = Math.max(max, col);
-    
-    if(allNodes[col] === undefined) {
-            allNodes[col] = { };
-    }
-    if(allNodes[col][row] == undefined){
-        allNodes[col][row] = []
-    }
-    allNodes[col][row].push(root.val);
-    
-    _verticalTraversal(root.left, row+1, col-1, allNodes);
-    _verticalTraversal(root.right, row+1, col+1, allNodes);
-    
-}
+ function _verticalTraversal(root, row, col, allNodes){  //O(n)
+     if(root === null) return null;
+     min = Math.min(col, min);
+     max = Math.max(col, max);
+     if(allNodes[col] === undefined){
+         allNodes[col] = {};
+     }
+     if(allNodes[col][row] === undefined){
+         allNodes[col][row] = [];
+     }
+     allNodes[col][row].push(root.val);
+     
+      _verticalTraversal(root.left, row+1, col-1, allNodes);
+      _verticalTraversal(root.right, row+1, col+1, allNodes);
+ }
