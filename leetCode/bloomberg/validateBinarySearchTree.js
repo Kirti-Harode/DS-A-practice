@@ -44,7 +44,7 @@ var isValidBSTInternal = function(root) {
     if( !left.isValid || !right.isValid){
             result.isValid = false;
     }else{
-        if(left.max < root.val && right.min > root.val){
+        if(left.max < root.val && right.min >= root.val){
             result.isValid = true;
         }
     }

@@ -108,3 +108,14 @@ const pathFinder = (root, target) => {
 // n = number of nodes
 // Time: O(n)
 // Space: O(n)
+
+if(root === null) return null;
+  if(root.val === val1 || root.val === val2) return root.val;
+  
+  let left = lowestCommonAncestor(root.left, val1, val2);
+  let right = lowestCommonAncestor(root.right, val1, val2);
+  
+  if(right && left) return root.val;
+  
+  if(!left) return right;
+  if(!right) return left;
