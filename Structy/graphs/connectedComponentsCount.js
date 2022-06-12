@@ -46,7 +46,7 @@
 // }); // -> 5
 
 
-
+//not working
 const connectedComponentsCount = (graph) => {
     //   create a count var to keep no of connected components
     //   take all the keys from the adjacency and loop over them
