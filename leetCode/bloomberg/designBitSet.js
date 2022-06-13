@@ -1,38 +1,22 @@
 var Bitset = function(size) {
-    flipped = false;
-    count = 0;
-    bitset = [];
-    for(let i = 0; i< size; i++){
-       bitset.push(0);
-    }
-    
-
-//     n = size
-//    time: O(n), space: O(n)
+    this.bitset = Array(size).fill(0);
+    this.zeroCount = this.bitset.length
+    this.oneCount = 0;
+    this.flipped = false;
 };
 
 /** 
  * @param {number} idx
  * @return {void}
- */              
-// [000] [111] => [100] [011]
+ */
 Bitset.prototype.fix = function(idx) {
-    if(flipped === false){
-          if(bitset[idx] !== 1){
-            bitset[idx] = 1;
-            count++;
-          }
-    }else{
-        if(bitset[idx] === 1){
-            bitset[idx] = 0;
-            count++;
-          }
+    if(!this.flipped && this.bitset[idx] !== 1){
+        this.bitset[idx] = 1;  
+    }else if(this.flipped && this.bitset[idx] === 1){
+        this.bitset[idx] = 0;  
     }
-    
-  
-    // console.log(count);
-    
-    // time:O(1)
+     this.zeroCount -= 1;
+    this.oneCount += 1;
 };
 
 /** 
@@ -40,102 +24,70 @@ Bitset.prototype.fix = function(idx) {
  * @return {void}
  */
 Bitset.prototype.unfix = function(idx) {
-    if(flipped === false){
-        if(bitset[idx] !== 0){
-            bitset[idx] = 0;
-            count--;
-        }
-    }else{
-        if(bitset[idx] === 0){
-            bitset[idx] = 1;
-            count--;
-        }
+    if(!this.flipped && this.bitset[idx] !== 0){
+        this.bitset[idx] = 0;
+    }else if(this.flipped && this.bitset[idx] === 0){
+        this.bitset[idx] = 1;
     }
-  
-    // console.log(count);
-    
-    // time:O(1)
+    this.zeroCount += 1;
+    this.oneCount -= 1;
 };
 
 /**
  * @return {void}
  */
 Bitset.prototype.flip = function() {
-   // if(flipped === false){
-   //     flipped = true;
-   // }else{
-   //     flipped = false;
-   // }
-    !flipped;
-    
-    count = bitset.length - count;
+    if(this.flipped){
+        this.flipped = false;
+        
+    }else{
+        this.flipped = true;
+    }
+    let temp = this.oneCount;
+    this.oneCount = this.zeroCount;
+    this.zeroCount = temp;
 };
 
 /**
  * @return {boolean}
  */
 Bitset.prototype.all = function() {
-    // if(flipped ===  false){
-         if(count === bitset.length)  return true;
-        return false;
-    // }else{
-    //     if(count === bitset.length)  return false;
-    //     return true;
-    // }
-  
-    
-    // time:O(1)
+    if(this.oneCount === this.bitset.length) return true;
+    return false;
 };
 
 /**
  * @return {boolean}
  */
 Bitset.prototype.one = function() {
-  // if(flipped === false){
-        if(count > 0){
-            return true;
-        }
-    
+    if(this.oneCount >= 1){
+        return true;
+    }
     return false;
-//   }else{
-//       if(count > 0){
-//             return false;
-//         }
-    
-//     return true;
-//   }
-      
-    // time:O(1)
 };
 
 /**
  * @return {number}
  */
 Bitset.prototype.count = function() {
-  
-    return count;
-    // console.log(count);
-    // time:O(1)
+    return this.oneCount;
 };
 
 /**
  * @return {string}
  */
 Bitset.prototype.toString = function() {
-    if(flipped === true){
-        for(let i = 0; i < bitset.length; i++){
-            if(bitset[i] === 1){
-                bitset[i] = 0;
+    if(this.flipped){
+        for(let i = 0; i < this.bitset.length; i++){
+            if(this.bitset[i] === 1){
+                this.bitset[i] = 0;
             }else{
-                bitset[i] = 1;
+                this.bitset[i] = 1;
             }
         }
-        flipped = false;
+        this.flipped = false;
     }
-    return bitset.join("");
-    
- // time:O(n)
-//     space: O(n)
+    return this.bitset.join("")
 };
 
 /** 
