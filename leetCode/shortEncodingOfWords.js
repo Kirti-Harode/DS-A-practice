@@ -27,3 +27,11 @@
 // 1 <= words.length <= 2000
 // 1 <= words[i].length <= 7
 // words[i] consists of only lowercase letters.
+
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+ var minimumLengthEncoding = function(words) {
+    
+};
