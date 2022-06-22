@@ -68,3 +68,69 @@ var longestConsecutive = function(nums) {
    return array.length;
    
 };
+
+
+
+//time: o(n)
+
+var longestConsecutive = function(nums) {
+    
+    // {100, 4, 200, 1, 3, 2}
+    let set = new Set(nums);  //{100,4,200,1,3,2}
+    let max = 0;    // 1
+    let count = 1;    // 1
+    let currentNum = nums[0]; //  100
+    for(let key of set){     // 100, 4
+        // if(set.has(key-1)){
+        //     while(set.has(key-1)){
+        //         set.delete(key+1);
+        //         currentNum += 1; 
+        //         count ++; 
+        //     }
+        // }
+        if(set.has(key-1) === false){
+            currentNum = key;  
+            count = 1;
+            while(set.has(currentNum+1)){
+                set.delete(currentNum+1);
+                currentNum += 1; 
+                count ++; 
+            }
+            max = Math.max(count, max);
+        }
+    }
+    return max;
+};
+
+
+// publica question : 
+var longestConsecutive = function(nums) {
+    
+    // {100, 4, 200, 1, 3, 2}
+    let obj = {};  //{100,4,200,1,3,2}
+    for(let num of nums){
+        if(obj[num] === undefined){
+            obj[num] = 1;
+        }else{
+            obj[num]++;
+        }
+    }
+    console.log(obj)  // { '1': 1, '2': 1, '3': 1, '4': 1, '5': 2, '7': 1, '9': 1 }
+    let max = 0;    // 
+    let count = 1;    // 
+    let currentNum; //  
+    for(let key of Object.keys(obj)){     // 1
+        if(obj[Number(key)-1] === undefined){
+            
+            currentNum = Number(key);  // 1  
+            count = 1;   // 1
+            while((currentNum+1) in obj){ 
+                count += obj[currentNum+1];  // 1+1
+                delete obj[currentNum+1];
+                currentNum += 1;  // 2 
+            }
+            max = Math.max(count, max);  // 2
+        }
+    }
+    return max;
+};
