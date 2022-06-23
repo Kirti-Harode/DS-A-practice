@@ -2,3 +2,9 @@
 -- then a 2nd table that has the rides the users has taken with data of user_id and city_id, miles traveled for each ride
 -- so they want you to find the top 100 users had drove the highest distance total.
 
+select user.id, sum(distance) as distance_traveled 
+from rides
+join users on ride.user_id = users.id
+group by users.id
+order by distance_traveled DESC, users.name ASC 
+limit 100
