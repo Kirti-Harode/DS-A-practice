@@ -8,3 +8,13 @@ join users on ride.user_id = users.id
 group by users.id
 order by distance_traveled DESC, users.name ASC 
 limit 100
+
+
+select users.name, distance_traveled as __ 
+from users 
+join(
+    SELECT users.id == id, SUM(rides.distance) as distance_traveled
+    FROM users 
+    JOIN rides on users.id = rides.user_id 
+    GROUP BY users.id
+)
