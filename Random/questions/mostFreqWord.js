@@ -1,0 +1,1 @@
+// find the most freq word with even length and return the first word if freq is same
