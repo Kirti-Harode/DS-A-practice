@@ -18,3 +18,5 @@ join(
     JOIN rides on users.id = rides.user_id 
     GROUP BY users.id
 )
+ORDER BY users.name 
+LIMIT 100
