@@ -36,8 +36,8 @@
 
 
 function subIntervalCount(array, k){   // [9,4,5,6,7,8,1]
-    if(array.length === 1 && k === 1){
-        return 1;
+    if(k === 1){
+        return array.length;
     }
     let count = 0;
     let i = 0;   // 1

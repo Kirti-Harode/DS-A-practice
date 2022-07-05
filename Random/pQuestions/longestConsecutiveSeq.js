@@ -20,7 +20,6 @@ var longestConsecutive = function(nums) {
     let currentNum; //  
     for(let key of Object.keys(obj)){     // 1
         if(obj[Number(key)-1] === undefined){
-            
             currentNum = Number(key);  // 1  
             count = 1;   // 1
             while((currentNum+1) in obj){ 
