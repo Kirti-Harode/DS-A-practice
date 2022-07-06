@@ -14,20 +14,19 @@ var longestConsecutive = function(nums) {
             obj[num]++;
         }
     }
-    console.log(obj)  // { '1': 1, '2': 1, '3': 1, '4': 1, '5': 2, '7': 1, '9': 1 }
-    let max = 0;    // 
-    let count = 1;    // 
-    let currentNum; //  
-    for(let key of Object.keys(obj)){     // 1
+    console.log(obj) 
+    let max = 0;    
+    let count = 1;   
+    let currentNum; 
+    for(let key of Object.keys(obj)){     
         if(obj[Number(key)-1] === undefined){
-            currentNum = Number(key);  // 1  
-            count = 1;   // 1
+            currentNum = Number(key);   
+            count = obj[currentNum];   
             while((currentNum+1) in obj){ 
-                count += obj[currentNum+1];  // 1+1
-                delete obj[currentNum+1];
-                currentNum += 1;  // 2 
+                count += obj[currentNum+1];  
+                currentNum += 1;  
             }
-            max = Math.max(count, max);  // 2
+            max = Math.max(count, max); 
         }
     }
     return max;

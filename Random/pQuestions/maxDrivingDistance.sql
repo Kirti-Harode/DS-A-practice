@@ -20,3 +20,30 @@ join(
 )
 ORDER BY users.name 
 LIMIT 100
+
+
+select users.name, sum(distance) as distance_traveled  
+from rides 
+join users on rides.user_id = users.id 
+group by users.id 
+order by distance_traveled DESC, users.name ASC  
+limit 100;
+
+-- Final1:
+select u.name as name, sum(r.distance) as distance_traveled 
+from users u 
+inner join rides r on u.id = r.user_id 
+group by u.id 
+order by distance_traveled desc, name asc;
+
+
+-- Final2: 
+select u.name as name, t.distance_traveled as distance_traveled 
+from users u 
+inner join (select user_id, sum(distance) as distance_traveled 
+            from rides 
+            group by user_id) as t on u.id = t.user_id 
+order by distance_traveled desc, name asc;
+
+
+

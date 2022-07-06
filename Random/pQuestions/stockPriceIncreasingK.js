@@ -40,18 +40,17 @@ function subIntervalCount(array, k){   // [9,4,5,6,7,8,1]
         return array.length;
     }
     let count = 0;
-    let i = 0;   // 1
-    let j = 1;   // 2
+    let i = 0;   
+    let j = 1;   
   
     while(j < array.length){
-        let prev = array[i]
-        if(array[j] > prev){  // 
-            prev = array[j];   // 4
-            if((j - i + 1) === k){ // 3-1+1
-                count ++; // 1
+        let prev = array[j-1]
+        if(array[j] > prev){  
+            if((j - i + 1) === k){ 
+                count ++; 
                 i++;
             }
-            j ++;  // 4
+            j ++;  
             
         }else{
             i = j;
