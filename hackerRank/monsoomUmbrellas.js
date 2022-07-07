@@ -6,3 +6,22 @@
 //  requirement = 5, 
 //  sizes = [3, 5] 
 //  1 umbrella can cover exactly 5 people so the function should return 1.
+
+function umbrellaCount(sizes, requirement){
+    let count = 1;
+    let obj = {};
+    for(let size of sizes){
+        obj[size] = true;
+    }
+
+    for(let key of Object.keys(obj)){
+        let rem = requirement-key
+        
+        if(obj[rem]){
+            count ++;
+            if(rem === 0){
+                return count;
+            }
+        }
+    }
+}
