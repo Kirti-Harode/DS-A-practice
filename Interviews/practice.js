@@ -1,11 +1,11 @@
-input = [
-    ["1", "2", "3", "4", "5", "6", "7", "8"],
-    ["1", "2", "3", "4", "5", "6", "7", "9"],
-    ["cat", "accessories", "clothes"],
-    ["cat", "food", "dry"],
-    ["cat", "food", "wet"],
-    ["dog", "drinks"],
-    ["dog", "food"]];
+// input = [
+//     ["1", "2", "3", "4", "5", "6", "7", "8"],
+//     ["1", "2", "3", "4", "5", "6", "7", "9"],
+//     ["cat", "accessories", "clothes"],
+//     ["cat", "food", "dry"],
+//     ["cat", "food", "wet"],
+//     ["dog", "drinks"],
+//     ["dog", "food"]];
 
 
 output = [{
@@ -49,8 +49,17 @@ output = [{
     }
 ]
 
+input = [
+    ["1", "2", "3", "4", "5", "6", "7", "8"],
+    ["1", "2", "3", "4", "5", "6", "7", "9"],
+    ["cat", "accessories", "clothes"],
+    ["cat", "food", "dry"],
+    ["cat", "food", "wet"],
+    ["dog", "drinks"],
+    ["dog", "food"]];
+
 function parseData(input){
-    const structure = input.reduce((obj, arr) => {
+    const structure = input.reduce((obj, arr) => {  // {}, ["1", "2", "3", "4", "5", "6", "7", "8"]
         const last = arr.pop()
         const chain = arr.reduce((o, key) => {
           o[key] = o[key] || {}
@@ -60,7 +69,7 @@ function parseData(input){
         return obj
       }, {})
       
-      //console.log(structure)
+      console.log(structure)
       var finalArray = Object.entries(structure).map(
         ([k,v]) => ({[k]:v})
       )

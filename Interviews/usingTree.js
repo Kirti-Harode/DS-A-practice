@@ -2,7 +2,6 @@ class TreeNode {
     constructor(val){
         this.val = val;
         this.children = [];
-        // this.end = false;
     }
 }
 
@@ -12,12 +11,8 @@ class MyTree {
     }
 
     insert(node, parentNode){
-        // if(this.search(node, parentNode) === false){
-            parentNode.children.push(node);
-            // return true;
-        // }else {
-            // return false;
-        // }
+        parentNode.children.push(node);
+
     }
 
     search(node, parentNode){
@@ -41,15 +36,15 @@ let a = [
 
 ]
 
+//Tree Brute force just for 3 ele =>
+
 function parseData(input){
-    // let tree = new MyTree();
     let root = new TreeNode("Data");
     for(let ele of input){
         let firstEle = ele[0];
         let secEle = ele[1];
         let thirdEle = ele[2];
 
-        
         let outerNode = search(firstEle, root);
         let innerNode = search(secEle, outerNode);
         innerNode.children.push(new TreeNode(thirdEle));
@@ -69,4 +64,39 @@ function search(val, parentNode){
     return node;
 }
 
-console.log(parseData(a));
+// console.log(parseData(a));
+
+
+// Best dynamic solution =>
+
+function parseData2(input){
+    let root = new TreeNode("data");
+    for(let row of input){
+        buildTree(row, root);
+    }
+    return root;
+}
+
+function buildTree(array, root){
+    if(array.length === 0) return;
+
+    let ele = array[0];
+    let currNode;
+    for(let node of root.children){
+        if(node.val === ele){
+            currNode = node;
+        }
+    }
+    if(currNode === undefined) {
+        currNode = new TreeNode(ele);
+        root.children.push(currNode);
+    }
+
+    buildTree(array.slice(1), currNode);
+}
+
+console.log(parseData2(a));
+
+
+// print all the leaf node values => 
+
