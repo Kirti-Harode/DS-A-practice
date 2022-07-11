@@ -49,3 +49,24 @@ output = [{
     }
 ]
 
+function parseData(input){
+    // const structure = input.reduce((obj, arr) => {
+    //     const last = arr.pop()
+    //     const chain = arr.reduce((o, key) => {
+    //       o[key] = o[key] || {}
+    //       return o[key]
+    //     }, obj)
+    //     chain[last] = []
+    //     return obj
+    //   }, {})
+      
+    //   //console.log(structure)
+    //   var finalArray = Object.entries(structure).map(
+    //     ([k,v]) => ({[k]:v})
+    //   )
+    //   return finalArray;
+
+
+}
+
+console.log(parseData(input));

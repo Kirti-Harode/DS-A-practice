@@ -32,22 +32,22 @@ function convertToObj(input){
 function parseData(str) {
     let parsed = {};
     const splitData = str.split('\n').slice(1).map(row => row.split(','));
-    console.log(splitData)
+    // console.log(splitData)
     for (let row of splitData) {
       let splitRow = row[1].split(' > '); //[Alliant, Demographic, Age 25-29 years]
       let metaData = [row[0]].concat(row.slice(2));
-        console.log(metaData)
+        // console.log(metaData)
       let currObj = parsed;
   
       for (let i = 0; i < splitRow.length - 1; i++) {
         const key = splitRow[i]
   
         if (i !== splitRow.length - 2) {
-        //   currObj[key] = currObj[key]  //{};
-        //   currObj = currObj[key];
+          currObj[key] = currObj[key]  || {};
+          currObj = currObj[key];
         } else {
-        //   currObj[key] = currObj[key]  //[];
-        //   currObj[key].push([splitRow[i + 1], metaData.join(' | ')]);
+          currObj[key] = currObj[key]  || [];
+          currObj[key].push([splitRow[i + 1], metaData.join(' | ')]);
         }
   
       }
