@@ -10,6 +10,7 @@ let a = [
 
 ]
 
+// Basic, only for 3 ele => 
 function convertToObj(input){
     let output = {};
     for(let ele of input){
@@ -27,8 +28,39 @@ function convertToObj(input){
 
 // console.log(convertToObj(a));
 
+function buildNestedObj(input){ 
+    let output = {};
+    for(let row of input){     // ["NewUser", "BigScreen", '1'],
+        let currentObj = output;
+        for(let i = 0;  i < row.length-1; i++ ){
+            let ele = row[i];
+            if(i !== row.length-2){
+                if(!(ele in currentObj)){
+                    currentObj[ele] = {};
+                }
+                currentObj = currentObj[ele];
+            }else{
+                if(!(ele in currentObj)){
+                    currentObj[ele] = [];
+                }
+                currentObj[ele].push(row[i+1]);
+            }
+            // currentObj[ele] = currentObj[ele] || {};
+            // currentObj = currentObj[ele];
+        }
+    }
+    console.log(output);
+}
+
+let b = [
+    ["NewUser", "BigScreen", '1'],
+    ["PrevUser", "SmallScreen", '123123']
+]
+console.log(buildNestedObj(a));
 
 
+
+// Laney's solution => 
 function parseData(str) {
     let parsed = {};
     const splitData = str.split('\n').slice(1).map(row => row.split(','));
@@ -57,4 +89,4 @@ function parseData(str) {
 }
 
 let input = "alldata\nNewData , Alliant > NonDemographic > Age 40 years, newestdata\nOldData, Alliant > Demographic > Age > 25-29 years, oldestData"
-console.log(parseData(input));
+// console.log(parseData(input));

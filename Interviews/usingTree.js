@@ -72,12 +72,12 @@ function search(val, parentNode){
 function parseData2(input){
     let root = new TreeNode("data");
     for(let row of input){
-        buildTree(row, root);
+        insertIntoTree(row, root);
     }
     return root;
 }
 
-function buildTree(array, root){
+function insertIntoTree(array, root){
     if(array.length === 0) return;
 
     let ele = array[0];
@@ -92,11 +92,71 @@ function buildTree(array, root){
         root.children.push(currNode);
     }
 
-    buildTree(array.slice(1), currNode);
+    insertIntoTree(array.slice(1), currNode);
 }
 
-console.log(parseData2(a));
+// console.log(parseData2(a));
+
 
 
 // print all the leaf node values => 
+let root = parseData2(a);
 
+function printLeafNodes(root){
+
+    let leafyNodes = [];
+
+    let queue = [root];
+    while(queue.length){
+        let currentNode = queue.shift();
+        if(currentNode.children.length === 0){
+            leafyNodes.push(currentNode.val);
+        }else{
+            for(let child of currentNode.children){
+                queue.push(child);
+            }
+        }
+    }
+    return leafyNodes;
+}
+
+//using recursion =>
+function printLeafNodesRecursion(root, output=[]){
+    if(root === null) return [];
+    
+    if(root.children.length === 0){
+        output.push(root);
+    }else{
+        for(let child of root.children){
+            printLeafNodesRecursion(child, output);
+        }
+        
+    }
+    return output;
+}
+console.log(printLeafNodesRecursion(root));
+
+
+// print leafNodes of given data => 
+
+// let array = ["NewUser"];
+let array = ["NewUser", "BigScreen"];
+
+let output = []
+function printChildren(root, array){
+    if(array.length === 0) return root.children;
+   
+    let ele = array[0]; // "NewUser"
+    
+    let nextRoot;
+    for(let child of root.children){
+        if(child.val === ele){
+            nextRoot = child;
+            break;
+        }
+    }
+    array.shift()
+    return printChildren(nextRoot, array);
+}
+
+// console.log(printChildren(root, array));
