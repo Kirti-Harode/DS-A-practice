@@ -5,9 +5,8 @@ let a = [
     ["NewUser", "BigScreen", '4'],
     ["OldUser", "BigScreen", '4'],
     ["OldUser", "BigScreen", '123'],
-    ["NewUser", "SmallScreen", '123123'],
-    ["PrevUser", "SmallScreen", '123123'],
-
+    ["NewUser", "SmallScreen", "myUser",'123123'],
+    ["PrevUser", "SmallScreen", '123123']
 ]
 
 // Basic, only for 3 ele => 
@@ -28,6 +27,7 @@ function convertToObj(input){
 
 // console.log(convertToObj(a));
 
+// Best way => 
 function buildNestedObj(input){ 
     let output = {};
     for(let row of input){     // ["NewUser", "BigScreen", '1'],
@@ -59,6 +59,16 @@ let b = [
 console.log(buildNestedObj(a));
 
 
+// find and print the last ele => 
+
+let arr = ["NewUser", "BigScreen"];
+
+function printLastEle(arr){
+    
+}
+
+
+
 
 // Laney's solution => 
 function parseData(str) {
@@ -81,10 +91,8 @@ function parseData(str) {
           currObj[key] = currObj[key]  || [];
           currObj[key].push([splitRow[i + 1], metaData.join(' | ')]);
         }
-  
       }
     }
-  
     return parsed;
 }
 

@@ -74,8 +74,6 @@ function parseData(input){
         ([k,v]) => ({[k]:v})
       )
       return finalArray;
-
-
 }
 
 console.log(parseData(input));
