@@ -85,6 +85,7 @@ function insertIntoTree(array, root){
     for(let node of root.children){
         if(node.val === ele){
             currNode = node;
+            break;
         }
     }
     if(currNode === undefined) {

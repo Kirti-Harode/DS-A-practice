@@ -49,25 +49,34 @@ function buildNestedObj(input){
             // currentObj = currentObj[ele];
         }
     }
-    console.log(output);
+    return output;
 }
 
 let b = [
     ["NewUser", "BigScreen", '1'],
     ["PrevUser", "SmallScreen", '123123']
 ]
-console.log(buildNestedObj(a));
+// console.log(buildNestedObj(a));
 
 
 // find and print the last ele => 
 
-let arr = ["NewUser", "BigScreen"];
-
-function printLastEle(arr){
-    
+let arr =  ["NewUser"]
+let object = buildNestedObj(a)
+function printLastEle(object, arr){
+    let currentObj = object;
+    for(let ele of arr){
+        for(let key in currentObj){
+            if(key === ele){
+                currentObj = currentObj[ele];
+                break;
+            }
+        }
+    }
+    return currentObj;
 }
 
-
+console.log(printLastEle(object, arr));
 
 
 // Laney's solution => 
