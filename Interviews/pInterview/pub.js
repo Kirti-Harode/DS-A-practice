@@ -66,17 +66,14 @@ let object = buildNestedObj(a)
 function printLastEle(object, arr){
     let currentObj = object;
     for(let ele of arr){
-        for(let key in currentObj){
-            if(key === ele){
-                currentObj = currentObj[ele];
-                break;
-            }
+        if(key === ele){
+            currentObj = currentObj[ele];
         }
     }
     return currentObj;
 }
 
-console.log(printLastEle(object, arr));
+// console.log(printLastEle(object, arr));
 
 
 // Laney's solution => 
@@ -106,4 +103,4 @@ function parseData(str) {
 }
 
 let input = "alldata\nNewData , Alliant > NonDemographic > Age 40 years, newestdata\nOldData, Alliant > Demographic > Age > 25-29 years, oldestData"
-// console.log(parseData(input));
+console.log(parseData(input));
