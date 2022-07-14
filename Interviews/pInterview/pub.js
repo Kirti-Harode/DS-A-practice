@@ -102,5 +102,6 @@ function parseData(str) {
     return parsed;
 }
 
+
 let input = "alldata\nNewData , Alliant > NonDemographic > Age 40 years, newestdata\nOldData, Alliant > Demographic > Age > 25-29 years, oldestData"
 console.log(parseData(input));
