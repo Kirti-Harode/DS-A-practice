@@ -20,3 +20,25 @@
 // 0 <= nums.length <= 105
 // -109 <= nums[i] <= 109a
 
+var longestConsecutive = function(nums) {
+    let set = new Set(nums);
+    let count = 1;
+    let max = 0;
+    let currentNum;
+    for(let key of set){
+        // console.log(key)
+        if(set.has(key-1) === false){
+            currentNum = key;
+            count = 1
+            while(set.has(currentNum+1)){
+                count ++;
+                set.delete(currentNum+1)
+                currentNum += 1;
+            } 
+            max = Math.max(count, max);
+            
+        }
+       
+    }
+    return max;
+};
