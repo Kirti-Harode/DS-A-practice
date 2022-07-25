@@ -79,7 +79,7 @@ const howHigh = (node) => {
     // return 0 if node is null
     // return max of left or right
       
-    if(node === null) return -1;
+    if(node === null) return 0;
     // if(node !== null) return 1;
     return 1 + Math.max(howHigh(node.left), howHigh(node.right));
 };
