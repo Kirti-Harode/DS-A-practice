@@ -1,6 +1,7 @@
 normal join is a inner join, doesnot contain null values
 
 
+
 here are two tables:
                 teacher
 id	    dept	    name	     phone	        mobile
@@ -21,6 +22,8 @@ id	   name
 3	   Engineering
 
 
+
+=>  IS NULL and IS NOT NULL
 
 1)  this query will return common values only no null:
 
