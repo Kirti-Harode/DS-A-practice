@@ -2,17 +2,19 @@ import React from "react";   //import react to covert jsx to html
 import UserTasks from './UserTasks';
 class Todos extends React.Component{  // extedn react.componenet to use the react properties and lifecycle methods, inheritance form the react.compoponent class
     constructor(props){
-        super(props);   // this is to pass the props to the parent class so that I can use props in lifecycle methods
+        super(props);   // this is to pass the props to the parent class so that I can use props in lifecycle methods, super is to call constructor of its parent class.
 
-        this.state = {  // state is all the info about the component and props are data from parent or data forthe child component
+        this.state = {  // state is all the info about the component and props are data from parent or data for the child component
             data: {},
             isLoaded: false
         }
         this.addTask = this.addTask.bind(this);
         this.removeTask = this.removeTask.bind(this);
-    }  // constructor is called before the render method without propsit will give error
+    }  // constructor is called before the render method without props, it will give error
 
-    async fetchFunc1(){  //promises are returned from async fun, fetch, or any ajax request. chain them using .then, and ctach the error if not resolved
+
+    //A Promise is an object representing the eventual completion or failure of an asynchronous operation
+    async fetchFunc1(){  //promises are returned from async fun, fetch, or any ajax request. chain them using .then, and catch the error if not resolved
         return [
             {user_id: 1, name: "Marvin", task: "swim"}, 
             {user_id: 1, name: "Marvin", task: "walk the dog"}, 
@@ -32,7 +34,7 @@ class Todos extends React.Component{  // extedn react.componenet to use the reac
     } 
 
     componentDidMount(){ // works after mounting the component once 
-        //ftch all the data in this bcos, 
+        //fetch all the data in this bcos, 
         //1. data won't be loaded util after the first render, so set initial state properly, state shouldn't be undefined
         // to avoid unnessecory rerendering and code complexity.
         //2. if you do this in costructor or componentWillMount => this will be called twice once on the server, again on the client side

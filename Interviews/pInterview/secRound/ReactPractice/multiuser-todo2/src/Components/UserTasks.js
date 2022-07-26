@@ -12,6 +12,8 @@ class UserTasks extends React.Component{
         //bind : to make sure functions have access to component attributes like this.props and this.state, bind the function on this scope
         // it is unnecessary to bind the render method or the lifecycle methods: we don’t pass them to other components.
 
+
+        //this keyword refers to an object. Which object depends on how this is being invoked (used or called).
     }
 
     handleSubmit(e){
@@ -43,7 +45,7 @@ class UserTasks extends React.Component{
 
 //onchange, onsubmit are event handlers, input and button here are controlled components 
 // event.target.value is returns the element that triggered the event, target represents a DOM element that triggered the evnt , target.value retrieves the value of that element 
-//to pass an argumet use arrow function
+//to pass an argumet use arrow function, arrow fun will create a instence of that func eith all the args and invoke it, without call back it will invoke immidiately
 
 export default UserTasks;
 
