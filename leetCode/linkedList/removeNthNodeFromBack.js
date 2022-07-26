@@ -60,3 +60,30 @@ var removeNthFromEnd = function(head, n) {
     prev.next = current.next;
     return dummyHead.next;
 };
+
+
+var removeNthFromEnd = function(head, n) {
+    let current = head;
+    let count = 0;
+    while(current){
+        count++;
+        current = current.next;
+    }
+    
+    
+    let dummyHead = new ListNode(null);
+    dummyHead.next = head;
+    let index = 0;
+    let curr = head;
+    let prev = dummyHead;
+    while(curr){
+        if(index === count-n){
+            prev.next = curr.next;
+            break;
+        }
+        prev = curr
+        index ++;
+        curr = curr.next;
+    }
+    return dummyHead.next;
+};
