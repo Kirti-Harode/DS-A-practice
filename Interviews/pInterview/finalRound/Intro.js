@@ -48,3 +48,5 @@ promise2.catch(onRejection); // Promise status: pending to rejected? catch() is 
 
 // promise1.then(onFulfilled, onRejection) 
 //this will also work but with is apporach if the callback fun itself throw some error it won't handle it, it will just handle the error from the promise.
+
+
