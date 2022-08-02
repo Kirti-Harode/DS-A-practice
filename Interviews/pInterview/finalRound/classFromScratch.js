@@ -9,41 +9,38 @@ const STATE ={
 class MyPromise{
     constructor(callabck){  //promise has a cb fun, cb => use it to call the resolve or reject right away
 
-        this.thenCbs = [];
-        this.catchCbs = [];
-        this.state = STATE.PENDING;
-        this.value = undefined;
+    this.thenCbs = [];
+    this.catchCbs = [];
+    this.state = STATE.PENDING;
+    this.value = undefined;
 
-        this.onSuccess = this.onSuccess.bind(this);
-        this.onFail = this.onFail.bind(this);
-        this.runCallbacks = this.runCallbacks.bind(this);
+    this.onSuccess = this.onSuccess.bind(this);
+    this.onFail = this.onFail.bind(this);
+    this.runCallbacks = this.runCallbacks.bind(this);
 
-        //calls the cb fun right away
-        try{   // wrapping it in try catch so if the promise has an err goes to catch and just call reject
-            callabck(this.onSuccess, this.onFail);
-        }catch(err){
-            this.onFail(err);
-        }  
+    //calls the cb fun right away
+    try{   // wrapping it in try catch so if the promise has an err goes to catch and just call reject
+        callabck(this.onSuccess, this.onFail);
+    }catch(err){
+        this.onFail(err);
+    }  
 
     }
 
     runCallbacks(){
-        queueMicrotask(() => { 
-            if(this.state === STATE.FULFILLED){
-                this.thenCbs.forEach(cb => {
-                    cb(this.value)
-                });
-                this.thenCbs = []; // remove callbacks so they don't run again
-            }
+        if(this.state === STATE.FULFILLED){
+            this.thenCbs.forEach(cb => {
+                cb(this.value)
+            });
+            this.thenCbs = []; // remove callbacks so they don't run again
+        }
 
-            if(this.state === STATE.REJECTED){
-                this.catchCbs.forEach(cb => {
-                    cb(this.value)
-                })
-                this.catchCbs = [];
-            }
-
-        })
+        if(this.state === STATE.REJECTED){
+            this.catchCbs.forEach(cb => {
+                cb(this.value)
+            })
+            this.catchCbs = [];
+        }
     }
 
     onSuccess(value){
@@ -64,29 +61,28 @@ class MyPromise{
 
     onFail(value){
         queueMicrotask(() => { 
-        if(this.state !== STATE.PENDING) return; // should just call reject once same for resolve
+            if(this.state !== STATE.PENDING) return; // should just call reject once same for resolve
 
-        if(value instanceof MyPromise){ 
-            value.then(this.onSuccess, this.onFail);
-            return; 
-        }
+            if(value instanceof MyPromise){ 
+                value.then(this.onSuccess, this.onFail);
+                return; 
+            }
 
-        if(this.catchCbs.length === 0){ // if there is an err but no catch blog that means the err cb not in this.catchCbs so just give a big error and warning
-            console.error('error' + value);
-        }
-        this.value = value;
-        this.state = STATE.REJECTED;
-        // execute handlers if already attached
-        this.runCallbacks();
-    })
-
+            if(this.catchCbs.length === 0){ // if there is an err but no catch blog that means the err cb not in this.catchCbs so just give a big error and warning
+                console.error('error' + value);
+            }
+            this.value = value;
+            this.state = STATE.REJECTED;
+            // execute handlers if already attached
+            this.runCallbacks();
+        })
     }
 
     //.then takes two cbs and store them in thencbs and catchcbs
     then(onFulfilled, onRejected){ //.then is called after the onsuccess/onfail
         return new MyPromise((resolve, reject) => { // promise for chaining
             this.thenCbs.push(res => {   // res is resolve("res"), "res" variable
-                if(onFulfilled == null){ // if onFull is not ther taht meanins it is a catch, which doesnot care about resolve, so just return from there to attach next then
+                if(onFulfilled == null){ // if onFull is null that meanins it is a catch or they are optional, which doesnot care about resolve, so just return from there to attach next then
                     resolve(res);  // p.then().catch().then() => catch doesn;t care about the succ so just resolve it. move on to the next rpomise with the res
                     return;
                 }
@@ -97,12 +93,7 @@ class MyPromise{
                     reject(err);
                 }
             })
-            if(onFulfilled) this.thenCbs.push(onFulfilled);
-            if(onRejected) this.catchCbs.push(onRejected);
-             this.runCallbacks(); // immediately run the callback
-
-
-             this.catchCbs.push(res => {
+            this.catchCbs.push(res => {
                 if(onRejected == null){
                     reject(res);
                     return;
@@ -114,7 +105,7 @@ class MyPromise{
                     reject(err)
                 }
              })
-        this.runCallbacks();
+            this.runCallbacks(); // run the recently added callbacks
         })
        
     }
