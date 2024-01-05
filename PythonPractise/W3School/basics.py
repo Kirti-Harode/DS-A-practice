@@ -52,3 +52,15 @@ x, y, z = fruits
 print(x)
 print(y)
 print(z)
+
+# print multi var at once
+print(x, y, z)
+
+print(x + y + z)
+
+# + operator
+x = 3
+y = 5
+print(x+y)
+
+# Global variables
