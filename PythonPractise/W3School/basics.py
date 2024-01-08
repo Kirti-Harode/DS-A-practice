@@ -37,8 +37,18 @@ my_var = 'snakecase'
 myvar2 = 'var name with num'
 MyNameIs = 'pascal case'
 
-# multi variables
+# multi variables, multi val
 x, y, z = 'hello', 'world', '!'
+print(x)
+print(y)
+print(z)
+
+# one value to multiple var
+x = y = z = 'Hey there!!'
+
+# unpack a collection
+fruits = ['banana', 'apple', 'peach']
+x, y, z = fruits
 print(x)
 print(y)
 print(z)
