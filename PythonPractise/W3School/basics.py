@@ -31,3 +31,14 @@ a = 3
 A = "Sally"
 #A will not overwrite a
 
+# snake case
+myVar = 'camelcase'
+my_var = 'snakecase'
+myvar2 = 'var name with num'
+MyNameIs = 'pascal case'
+
+# multi variables
+x, y, z = 'hello', 'world', '!'
+print(x)
+print(y)
+print(z)
