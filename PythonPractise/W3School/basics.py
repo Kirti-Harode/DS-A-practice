@@ -25,3 +25,9 @@ c = str(3)  #'3'
 print(type(a))   #<class 'int'>
 print(type(b))
 print(type(c))
+
+# case sensitive
+a = 3
+A = "Sally"
+#A will not overwrite a
+
