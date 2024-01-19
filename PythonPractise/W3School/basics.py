@@ -64,3 +64,9 @@ y = 5
 print(x+y)
 
 # Global variables
+x = "awesome"
+
+def myfunc():
+  print("Python is " + x)
+
+myfunc()
